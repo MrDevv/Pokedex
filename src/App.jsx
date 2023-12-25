@@ -1,9 +1,16 @@
+import { Aside } from "./components/Aside"
+import { Pokemons } from "./components/Pokemons"
 
 function App() {  
 
   return (
     <>
-      <h1>Pokedex</h1>
+      <section className="parent-container">
+        <main>
+          <Pokemons/>
+          <Aside/>
+        </main>
+      </section>
     </>
   )
 }
