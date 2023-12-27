@@ -22,8 +22,6 @@ export const Pokemons = () => {
     pokemon.name.includes(pokemonName)
   );
 
-  console.log(pokemonsByName);
-  console.log(isVisible);  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,7 +35,7 @@ export const Pokemons = () => {
     const { data } = await axios.get(
       `https://pokeapi.co/api/v2/pokemon?limit=649`
     );
-    setListPokemons(data.results);
+    setListPokemons(data.results);      
     setIsLoading(false);
   };
 
@@ -46,8 +44,8 @@ export const Pokemons = () => {
   }, []);
 
   useEffect(() => {      
-    if (isVisible) {
-      const maxPokemons = pokemonsByName.length;
+    const maxPokemons = pokemonsByName.length;
+    if (isVisible && maxPokemons  !== 0) {
       const newLimit = limit + INCREASE_LIMIT;
       newLimit > maxPokemons ? setLimit(maxPokemons) : setLimit(newLimit);      
     }    
@@ -78,9 +76,9 @@ export const Pokemons = () => {
       {
         !isLoading 
         ?
-          pokemonsByName.length > 0
-          ?                 
-            <PokemonList pokemons={pokemonsByName.slice(0, limit)} />                  
+          pokemonsByName.length > 0          
+          ? 
+            <PokemonList pokemons={pokemonsByName.slice(0, limit)} />                              
           :
           <span className="container-no-result">No hay resultados :c</span>
         :
