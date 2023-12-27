@@ -8,6 +8,8 @@ const INITIAL_LIMIT =  40;
 const INCREASE_LIMIT = 20;
 
 export const Pokemons = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   const [listPokemons, setListPokemons] = useState([]);
   const [pokemonName, setPokemonName] = useState("");
   const [limit, setLimit] = useState(INITIAL_LIMIT)
@@ -23,13 +25,6 @@ export const Pokemons = () => {
   console.log(pokemonsByName);
   console.log(isVisible);  
 
-  const getListPokemon = async () => {
-    const { data } = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon?limit=898`
-    );
-    setListPokemons(data.results);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
   }
@@ -38,8 +33,16 @@ export const Pokemons = () => {
     setPokemonName(e.target.value.toLowerCase());
   }
 
+  const getListPokemon = async () => {
+    const { data } = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon?limit=649`
+    );
+    setListPokemons(data.results);
+    setIsLoading(false);
+  };
+
   useEffect(() => {
-    getListPokemon("");
+    getListPokemon("");    
   }, []);
 
   useEffect(() => {      
@@ -73,13 +76,24 @@ export const Pokemons = () => {
         </div>
       </form>
       {
-        pokemonsByName.length > 0
-        ?        
-          <PokemonList pokemons={pokemonsByName.slice(0, limit)} />                  
+        !isLoading 
+        ?
+          pokemonsByName.length > 0
+          ?                 
+            <PokemonList pokemons={pokemonsByName.slice(0, limit)} />                  
+          :
+          <span className="container-no-result">No hay resultados :c</span>
         :
-        <span className="container-no-result">No hay resultados :c</span>
+        <div className="container-loading">
+        <div className="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
       } 
-      <span ref={targetObserver}></span>
+      <span ref={targetObserver}></span>      
     </section>
   );
 };
