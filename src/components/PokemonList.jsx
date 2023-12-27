@@ -1,14 +1,12 @@
-import React from 'react'
-import { PokemonCard } from './PokemonCard'
+import React from "react";
+import { PokemonCard } from "./PokemonCard";
 
-export const PokemonList = ({pokemons}) => {
+export const PokemonList = ({ pokemons }) => {
   return (
-    <section className='pokemon-list'>
-        {
-            pokemons.map(pokemon => (
-                <PokemonCard key={pokemon.url} pokemonURL={pokemon.url}/>
-            ))
-        }
-    </section>
-  )
-}
+      <section className="pokemon-list">
+        {pokemons.map((pokemon) => (
+          <PokemonCard key={pokemon.url} pokemonURL={pokemon.url} />
+        ))}
+      </section>
+  );
+};
