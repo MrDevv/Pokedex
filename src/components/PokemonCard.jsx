@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-export const PokemonCard = ({ pokemonURL }) => {
+export const PokemonCard = ({ pokemonURL, onClick }) => {
   const [pokemon, setPokemon] = useState(null);
 
   const getPokemon = async () => {
@@ -15,7 +15,7 @@ export const PokemonCard = ({ pokemonURL }) => {
 
   // console.log(pokemon);
   return pokemon ? (
-    <article className="card-pokemon">
+    <article className="card-pokemon" onClick={() => onClick(pokemon)}>
       <header>
         <img
           src={

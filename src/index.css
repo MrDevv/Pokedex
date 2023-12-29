@@ -263,3 +263,38 @@ h1{
     transform: rotate(360deg);
   }
 }
+
+/* Modal Pokemon */
+.modal-pokemon {
+  position: fixed;
+  top: 100rem;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background-color: rebeccapurple;
+  transition: all .3s ease-in-out;
+}
+
+.show-modal {
+  top: 0;
+}
+
+.details-pokemon {
+  background-color: #fff;
+  height: 85%;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  border-top-right-radius: 3rem;
+  border-top-left-radius: 3rem;
+
+  text-align: center;
+}
+
+.btn-close {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  border-radius: .5rem;
+  cursor: pointer;
+}
