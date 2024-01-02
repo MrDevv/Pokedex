@@ -1,24 +1,28 @@
-import { useContext } from "react"
-import { Aside } from "./components/Aside"
-import { ModalPokemon } from "./components/ModalPokemon"
-import { Pokemons } from "./components/Pokemons"
-import { PokemonContext } from "./context/PokemonContext"
+import { useContext } from "react";
+import { Aside } from "./components/Aside";
+import { ModalPokemon } from "./components/ModalPokemon";
+import { Pokemons } from "./components/Pokemons";
+import { PokemonContext } from "./context/PokemonContext";
 
-function App() {  
-
-  const {showDetailPokemon, closePokemonDetail} = useContext(PokemonContext);
+function App() {
+  const { showDetailPokemon, closePokemonDetail, pokemonDetail } =
+    useContext(PokemonContext);
 
   return (
     <>
       <section className="parent-container">
         <main>
-          <Pokemons/>
-          <Aside/>
-          <ModalPokemon showModal={showDetailPokemon} onCloseModal={closePokemonDetail}/>
+          <Pokemons />
+          <Aside />
+          <ModalPokemon
+            showModal={showDetailPokemon}
+            onCloseModal={closePokemonDetail}
+            pokemon={pokemonDetail}
+          />
         </main>
       </section>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
