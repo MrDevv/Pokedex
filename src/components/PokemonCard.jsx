@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { getBackgroundColor } from "../helpers/getBackgroundColorPokemon";
+import { getIconType } from "../helpers/getIconTypePokemon";
 
 export const PokemonCard = ({ pokemonURL, onClick }) => {
   const [pokemon, setPokemon] = useState(null);
@@ -15,25 +17,35 @@ export const PokemonCard = ({ pokemonURL, onClick }) => {
 
   // console.log(pokemon);
   return pokemon ? (
-    <article className="card-pokemon" onClick={() => onClick(pokemon)}>
-      <header>
-        <img
-          src={
-            pokemon?.sprites.versions["generation-v"]["black-white"].animated
-              .front_default
-          }
-          alt=""
-        />
-      </header>
-      <span>N° {pokemon?.id}</span>
-      <h4>{pokemon?.name}</h4>
-      <ul>
-        {pokemon?.types.map(({ type }) => (
-          <li key={type.name} className={type.name}>
-            {type.name}
-          </li>
-        ))}
-      </ul>
+    <article
+      className={`card-pokemon`}
+      style={{ backgroundColor: getBackgroundColor(pokemon.types[0]) }}
+      onClick={() => onClick(pokemon)}
+    >
+      <div className="container-info-pokeball">
+        <div className="info">
+          <span>#{pokemon?.id}</span>
+          <h4>{pokemon?.name}</h4>
+          <ul>
+            {pokemon?.types.map(({ type }) => (
+              <li key={type.name} className={type.name}>
+                <img src={getIconType(type.name)} alt="" />                
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="pokeball">
+          <img src="/assets/pokeball.png" alt="" />
+        </div>
+      </div>
+      <img
+        className="image-pokemon"
+        src={
+          pokemon?.sprites.versions["generation-v"]["black-white"].animated
+            .front_default
+        }
+        alt=""
+      />
     </article>
   ) : (
     <div className="container-loading">
