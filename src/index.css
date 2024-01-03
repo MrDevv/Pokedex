@@ -40,6 +40,46 @@ html {
   overflow-x: hidden;
 }
 
+.parent-header{
+  background-color: #fb6c6c;
+}
+
+.header{
+  max-width: 120rem;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 0;
+  margin-bottom: 2rem;  
+}
+
+.header h1{
+  color: #fff;
+  font-weight: 800;  
+}
+
+.header a i{
+  font-size: 3.5rem;
+  color: #fff;
+  transition: all .3s ease-in-out;
+}
+
+.header a:hover i{
+  color: #000;
+}
+
+@media screen and (max-width: 1000px) {
+  .header{
+    padding: 1.2rem 1rem;
+    margin-bottom: 0;
+  }
+
+  .header a i{
+    font-size: 3rem;
+  }
+}
+
 main {
   max-width: 1200px;
   margin: auto;
@@ -341,7 +381,7 @@ h1 {
 /* Modal Pokemon */
 .modal-pokemon {
   display: none;
-  top: 100rem;
+  top: 140rem;
   left: 0;
   right: 0;
   height: 100vh;
