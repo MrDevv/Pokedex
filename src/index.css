@@ -17,6 +17,21 @@ html{
   font-family: var(--main-font);
 }
 
+/* Scroll */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 80px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(177, 39, 39);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+
 /* Contenedor Padre */
 .parent-container{
   background-color: var(--fondo-bg-color);
