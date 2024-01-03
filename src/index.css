@@ -502,6 +502,12 @@ h1{
   height: 100vh;  
 }
 
+@media screen and (max-width: 1000px) {
+  .section-aside{
+    display: none;
+  }
+}
+
 .container-pokemon-info{
   position: absolute;
   /* background-color: #fff; */
