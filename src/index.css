@@ -22,6 +22,7 @@ html{
   background-color: var(--fondo-bg-color);
   height: 100vh;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 main{
@@ -29,6 +30,7 @@ main{
   margin: auto;
   display: grid;
   grid-template-columns: 1fr 300px;  
+  column-gap: 2rem;
 }
 
 h1{
@@ -266,12 +268,20 @@ h1{
 
 /* Modal Pokemon */
 .modal-pokemon {
-  position: fixed;
+  display: none;
   top: 100rem;
   left: 0;
   right: 0;
   height: 100vh;
   transition: all .3s ease-in-out;
+}
+
+
+@media screen and (max-width: 1000px) {
+  .modal-pokemon {
+    display: block;
+    position: fixed;  
+  }
 }
 
 .show-modal {
@@ -287,6 +297,7 @@ h1{
   border-top-right-radius: 3rem;
   border-top-left-radius: 3rem;  
 
+  z-index: 10;
   text-align: center;  
 }
 
@@ -334,6 +345,7 @@ h1{
 .details-pokemon ul{
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 1rem;
   padding: 0;
   margin-bottom: 1.5rem;
@@ -378,9 +390,16 @@ h1{
 .details-pokemon .container-abilities span{
   background-color: #f3f3f5;
   display: block;
-  padding: .5rem 7rem;
+  padding: .5rem 3rem;
   border-radius: 1rem;
   font-size: 1.4rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .details-pokemon .container-height-wight span,
+  .details-pokemon .container-abilities span{
+    padding: .5rem 7rem;
+  }
 }
 
 .details-pokemon .container-stats ul .stat{
@@ -405,11 +424,19 @@ h1{
   justify-content: center;
   background-color: #2F9AFF;
   color: #fff;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 800;
-  width: 3rem;
-  height: 3rem;  
+  width: 2.3rem;
+  height: 2.3rem;  
   border-radius: 50%;
+}
+
+@media screen and (max-width: 1000px) {
+  .stat .stat-name{
+    font-size: 1.1rem;
+    width: 3rem;
+    height: 3rem;  
+  }
 }
 
 .details-pokemon ul li:nth-child(1) span{
@@ -456,4 +483,57 @@ h1{
   font-size: 1.2rem;
   font-weight: 800;
   border-radius: 2rem;
+}
+
+.details-pokemon .container-evolutions ul .evolution img{
+  width: 6.3rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .details-pokemon .container-evolutions ul .evolution img{
+    width: 8rem;
+  }
+}
+
+/* Aside */
+.section-aside{
+  position: sticky;
+  top: 0;
+  height: 100vh;  
+}
+
+.container-pokemon-info{
+  position: absolute;
+  /* background-color: #fff; */
+  width: 100%;
+  height: 90%;
+  top: 0;
+  left: 90rem;
+  text-align: center;
+  border-radius: 3rem;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.span-select-pokemon{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #8F9396;
+}
+
+.show-aside{
+  left: 0rem;  
+}
+
+.container-loading-aside{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

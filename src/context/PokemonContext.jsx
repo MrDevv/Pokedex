@@ -7,8 +7,10 @@ export const PokemonContext = createContext();
 export const PokemonProvider = ({ children }) => {
   const [showDetailPokemon, setshowDetailPokemon] = useState(false);
   const [pokemonDetail, setPokemonDetail] = useState(false);
+  const [isLoadingPokemon, setIsLoadingPokemon] = useState(true)
 
   const showPokemon = async (pokemonInfo) => {
+    setIsLoadingPokemon(true)
 
     const { data: dataSpecies } = await axios.get(pokemonInfo.species.url);
     const { data: dataEvolution } = await axios.get(dataSpecies.evolution_chain.url);
@@ -30,7 +32,10 @@ export const PokemonProvider = ({ children }) => {
       evolution: await getEvolution(dataEvolution),
       image
     })
-    setshowDetailPokemon(true);        
+    setshowDetailPokemon(true);   
+    setTimeout(() => {      
+      setIsLoadingPokemon(false)     
+    }, 500);
   };
 
   const closePokemonDetail = () => {
@@ -39,7 +44,7 @@ export const PokemonProvider = ({ children }) => {
 
   return (
     <PokemonContext.Provider
-      value={{ showDetailPokemon, showPokemon, closePokemonDetail, pokemonDetail }}
+      value={{ showDetailPokemon, showPokemon, closePokemonDetail, pokemonDetail, isLoadingPokemon }}
     >
       {children}
     </PokemonContext.Provider>

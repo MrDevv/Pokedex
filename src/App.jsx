@@ -5,7 +5,7 @@ import { Pokemons } from "./components/Pokemons";
 import { PokemonContext } from "./context/PokemonContext";
 
 function App() {
-  const { showDetailPokemon, closePokemonDetail, pokemonDetail } =
+  const { showDetailPokemon, closePokemonDetail, pokemonDetail, isLoadingPokemon } =
     useContext(PokemonContext);
 
   return (
@@ -13,7 +13,7 @@ function App() {
       <section className="parent-container">
         <main>
           <Pokemons />
-          <Aside />
+          <Aside pokemon={pokemonDetail} isLoadingPokemon={isLoadingPokemon} />
           <ModalPokemon
             showModal={showDetailPokemon}
             onCloseModal={closePokemonDetail}
